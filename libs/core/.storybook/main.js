@@ -13,6 +13,13 @@ module.exports = {
   ],
   addons: [...rootMain.addons],
   async viteFinal(config, { configType }) {
+    if (process.env.GH_PAGES) {
+      config = {
+        ...config,
+        output: { publicPath: '/win-nx-playground/' },
+      };
+    }
+
     return mergeConfig(config, {
       plugins: [
         viteTsConfigPaths({
