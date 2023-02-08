@@ -33,7 +33,7 @@ jobs:
       - run: npm install
 
       - name: Build
-        run: npx nx run core:build-storybook
+        run: npx nx run core:build-storybook -- --preview-url=/win-nx-playground/iframe.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
