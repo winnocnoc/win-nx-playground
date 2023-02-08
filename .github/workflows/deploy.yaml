@@ -23,26 +23,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - id: build-publish
+        uses: bitovi/github-actions-react-to-ghp@v1.2.0
         with:
-          node-version: 16
-      - run: npm install
+          path: dist/storybook
+          build_command: npx nx run core:build-storybook
+        # - name: Checkout
+        #   uses: actions/checkout@v3
 
-      - name: Build
-        run: npx nx run core:build-storybook
+        # - name: Setup Node
+        #   uses: actions/setup-node@v3
+        #   with:
+        #     node-version: 16
+        # - run: npm install
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+        # - name: Build
+        #   run: npx nx run core:build-storybook
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: dist/storybook/core
+        # - name: Setup Pages
+        #   uses: actions/configure-pages@v3
 
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v1
+        # - name: Upload artifact
+        #   uses: actions/upload-pages-artifact@v1
+        #   with:
+        #     path: dist/storybook/core
+
+        # - name: Deploy
+        #   id: deployment
+        #   uses: actions/deploy-pages@v1
