@@ -22,7 +22,7 @@ jobs:
       - run: npm install
 
       - name: Build
-        run: npm run nx build-storybook core
+        run: npx nx run core:build-storybook
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
