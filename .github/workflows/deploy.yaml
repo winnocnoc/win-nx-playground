@@ -23,6 +23,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install
+
       - id: build-publish
         uses: bitovi/github-actions-react-to-ghp@v1.2.0
         with:
