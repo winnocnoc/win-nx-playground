@@ -5,6 +5,15 @@ on:
     branches:
       - 'main'
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
 jobs:
   deploy:
     environment:
@@ -14,9 +23,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: npm install
@@ -24,8 +35,14 @@ jobs:
       - name: Build
         run: npx nx run core:build-storybook
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist/storybook/core
+          path: dist/storybook/core
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v1
