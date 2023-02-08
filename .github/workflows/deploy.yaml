@@ -14,8 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - id: build-publish
-        uses: bitovi/github-actions-react-to-ghp@v1.2.0
+      - uses: actions/checkout@v3
+
+      - name: Build
+        run: npx nx build-storybook core
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: dist/storybook/core
-          build_command: npx nx run core:build-storybook
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/storybook/core
