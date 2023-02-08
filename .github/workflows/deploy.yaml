@@ -15,9 +15,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - run: npm ci
 
       - name: Build
-        run: npx nx build-storybook core
+        run: npm run nx build-storybook core
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
