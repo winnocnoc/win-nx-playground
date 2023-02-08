@@ -26,7 +26,7 @@ jobs:
       - id: build-publish
         uses: bitovi/github-actions-react-to-ghp@v1.2.0
         with:
-          path: dist/storybook
+          path: dist/storybook/core
           build_command: npx nx run core:build-storybook
         # - name: Checkout
         #   uses: actions/checkout@v3
