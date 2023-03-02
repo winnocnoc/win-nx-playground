@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
+import { Core } from '@rennerwin/core';
 import NxWelcome from './nx-welcome';
 
 export function App() {
@@ -7,6 +7,7 @@ export function App() {
     <>
       <NxWelcome title="web" />
       <div />
+      <Core />
     </>
   );
 }
